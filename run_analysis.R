@@ -192,5 +192,5 @@ head(output[output$activity =="WALKING",1:4],30)
 output[1:35,1:4]
 
 
-write.table(output, "TidyDataSet.txt", row.names = FALSE)
+write.table(output, "Getting and Cleaning Data Course Assignment Tidy Data Set.txt", row.names = FALSE)
 
