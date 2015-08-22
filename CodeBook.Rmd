@@ -1,0 +1,153 @@
+---
+title: "CodeBook"
+author: "Priyantha Perera"
+date: "August 20, 2015"
+output: html_document
+---
+## Getting-and-Cleaning-Data : Peer Assessment Course Project
+###Code: run_analysis.R
+###Tidy Data Set: "Getting and Cleaning Data Course Assignment Tidy Data Set.txt"
+
+Description of the Tidy Data Set
+================================
+
+The raw dataset was obtained from   https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+
+This is from the dataset created by the following researchers reported in their paper given below. We acknowledge the use of it by the following reference:
+
+============================================================================================
+
+License to Use
+==============
+Use of this dataset in publications must be acknowledged by referencing the following publication [1]
+
+[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.
+Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
+============================================================================================
+
+Variable Units:
+All the feature variables in the raw data set were standardized, therefore they are "unit" free.
+
+Tidy Data Set Variables
+=======================
+There are 3 variables
+1.Activities (6 levels)
+2.Subjects (30 subjects)
+2.Average of ("Signal  Name mean() or Std()").66 Average of variables named below.
+
+###Activity Labels
+1. WALKING
+2. WALKING_UPSTAIRS
+3. WALKING_DOWNSTAIRS
+4. SITTING
+5. STANDING
+6. LAYING
+
+###Subjects
+Identified by an integer from 1 to 30. By name identifiers of subjects were not availble
+
+###Averages of means and standard deviations of the selected feature variables
+1. Average_of_tBodyAcc-mean()-X
+2. Average_of_tBodyAcc-mean()-Y
+3. Average_of_tBodyAcc-mean()-Z
+4. Average_of_tBodyAcc-std()-X
+5. Average_of_tBodyAcc-std()-Y
+6. Average_of_tBodyAcc-std()-Z
+7. Average_of_tGravityAcc-mean()-X
+8. Average_of_tGravityAcc-mean()-Y
+9. Average_of_tGravityAcc-mean()-Z
+10. Average_of_tGravityAcc-std()-X
+11. Average_of_tGravityAcc-std()-Y
+12. Average_of_tGravityAcc-std()-Z
+13. Average_of_tBodyAccJerk-mean()-X
+14. Average_of_tBodyAccJerk-mean()-Y
+15. Average_of_tBodyAccJerk-mean()-Z
+16. Average_of_tBodyAccJerk-std()-X
+17. Average_of_tBodyAccJerk-std()-Y
+18. Average_of_tBodyAccJerk-std()-Z
+19. Average_of_tBodyGyro-mean()-X
+20. Average_of_tBodyGyro-mean()-Y
+21. Average_of_tBodyGyro-mean()-Z
+22. Average_of_tBodyGyro-std()-X
+23. Average_of_tBodyGyro-std()-Y
+24. Average_of_tBodyGyro-std()-Z
+25. Average_of_tBodyGyroJerk-mean()-X
+26. Average_of_tBodyGyroJerk-mean()-Y
+27. Average_of_tBodyGyroJerk-mean()-Z
+28. Average_of_tBodyGyroJerk-std()-X
+29. Average_of_tBodyGyroJerk-std()-Y
+30. Average_of_tBodyGyroJerk-std()-Z
+31. Average_of_tBodyAccMag-mean()
+32. Average_of_tBodyAccMag-std()
+33. Average_of_tGravityAccMag-mean()
+34. Average_of_tGravityAccMag-std()
+35. Average_of_tBodyAccJerkMag-mean()
+36. Average_of_tBodyAccJerkMag-std()
+37. Average_of_tBodyGyroMag-mean()
+38. Average_of_tBodyGyroMag-std()
+39. Average_of_tBodyGyroJerkMag-mean()
+40. Average_of_tBodyGyroJerkMag-std()
+41. Average_of_fBodyAcc-mean()-X
+42. Average_of_fBodyAcc-mean()-Y
+43. Average_of_fBodyAcc-mean()-Z
+44. Average_of_fBodyAcc-std()-X
+45. Average_of_fBodyAcc-std()-Y
+46. Average_of_fBodyAcc-std()-Z
+47. Average_of_fBodyAccJerk-mean()-X
+48. Average_of_fBodyAccJerk-mean()-Y
+49. Average_of_fBodyAccJerk-mean()-Z
+50. Average_of_fBodyAccJerk-std()-X
+51. Average_of_fBodyAccJerk-std()-Y
+52. Average_of_fBodyAccJerk-std()-Z
+53. Average_of_fBodyGyro-mean()-X
+54. Average_of_fBodyGyro-mean()-Y
+55. Average_of_fBodyGyro-mean()-Z
+56. Average_of_fBodyGyro-std()-X
+57. Average_of_fBodyGyro-std()-Y
+58. Average_of_fBodyGyro-std()-Z
+59. Average_of_fBodyAccMag-mean()
+60. Average_of_fBodyAccMag-std()
+61. Average_of_fBodyBodyAccJerkMag-mean()
+62. Average_of_fBodyBodyAccJerkMag-std()
+63. Average_of_fBodyBodyGyroMag-mean()
+64. Average_of_fBodyBodyGyroMag-std()
+65. Average_of_fBodyBodyGyroJerkMag-mean()
+66. Average_of_fBodyBodyGyroJerkMag-std()
+
+
+Study Design
+============
+Using the dataset obtained from the aforementioned Url ( which we will cal the raw dataset), we extract  66 features that were relevant for this exeercise out of 561 features described below.  
+
+###The dataset includes the following files:
+
+- 'README.txt'
+- 'features_info.txt': Shows information about the variables used on the feature vector.
+- 'features.txt': List of all features.
+- 'activity_labels.txt': Links the class labels with their activity name.
+- 'train/X_train.txt': Training set.
+- 'train/y_train.txt': Training labels.
+- 'test/X_test.txt': Test set.
+- 'test/y_test.txt': Test labels.
+
+The following files are available for the train and test data. Their descriptions are equivalent. 
+
+- 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
+
+We ignore files containing intertial signals which are also in the raw dataset. Features which had both means and standard deviations computed, were the 66 that were extracted.
+
+Output
+======
+The tidy data set comprised of the means of the extractedd features by subject number and activity name as indicated above.
+
+
+Note:
+
+-1. For the original study design and further information on the "Raw" data for our analysis     please read the reference given below:
+
+    http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphone
+
+-2. The raw dataset was obtained from the following source:
+    https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
